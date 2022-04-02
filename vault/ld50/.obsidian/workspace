@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "TEMPLATE TODO.md",
+            "file": "Game To Do.md",
             "mode": "source",
             "source": false
           }
@@ -69,7 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "TEMPLATE TODO.md",
+                "file": "Game To Do.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -89,7 +89,9 @@
   },
   "active": "feb1e1a49d473270",
   "lastOpenFiles": [
-    "TEMPLATE TODO.md",
+    "Game To Do.md",
+    "Scratchpad.md",
+    "LD50Jam.md",
     "Timeline.md"
   ]
 }

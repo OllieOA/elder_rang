@@ -8,9 +8,50 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "AlertableObject",
+"language": "GDScript",
+"path": "res://objects/base_objects/alertable_object.gd"
+}, {
+"base": "Resource",
+"class": "AlertableObjectProperties",
+"language": "GDScript",
+"path": "res://objects/base_objects/alertable_object_properties.gd"
+}, {
+"base": "Node2D",
+"class": "BaseLevel",
+"language": "GDScript",
+"path": "res://scenes/base_level.gd"
+}, {
+"base": "Resource",
+"class": "GlobalDataObject",
+"language": "GDScript",
+"path": "res://objects/base_objects/global_data_object.gd"
+}, {
+"base": "AlertableObject",
+"class": "SwipableObject",
+"language": "GDScript",
+"path": "res://objects/base_objects/swipable_object.gd"
+}, {
+"base": "Resource",
+"class": "SwipableObjectProperties",
+"language": "GDScript",
+"path": "res://objects/base_objects/swipable_object_properties.gd"
+} ]
+_global_script_class_icons={
+"AlertableObject": "",
+"AlertableObjectProperties": "",
+"BaseLevel": "",
+"GlobalDataObject": "",
+"SwipableObject": "",
+"SwipableObjectProperties": ""
+}
+
 [application]
 
-config/name="Jam Template"
+config/name="LD50"
+run/main_scene="res://scenes/base_level.tscn"
 boot_splash/image="res://ui/gremlindevelopment_splash_screen.png"
 
 [autoload]
@@ -18,6 +59,8 @@ boot_splash/image="res://ui/gremlindevelopment_splash_screen.png"
 AudioManager="*res://globals/audio_manager.tscn"
 SignalBus="*res://globals/signal_bus.gd"
 GameControl="*res://globals/game_control.tscn"
+EventManager="*res://globals/event_manager.gd"
+GameProgress="*res://globals/game_progress.gd"
 
 [display]
 
@@ -48,6 +91,14 @@ texture={
 "size_limit": 0,
 "stream": false,
 "svg/scale": 1.0
+}
+
+[input]
+
+main_click={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
 }
 
 [physics]

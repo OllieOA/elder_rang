@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://objects/base_objects/alertable_object_properties.gd" type="Script" id=1]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource( 1 )
+object_name = "cat"
+max_alert_level = 3
+base_random_chance = 0.3
+activation_time = 0.0
+sleep_time = 30.0

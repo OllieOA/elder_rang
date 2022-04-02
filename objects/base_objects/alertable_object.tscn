@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://objects/base_objects/alertable_object.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 77.0
+height = 88.0
+
+[node name="AlertableObject" type="Node2D"]
+script = ExtResource( 2 )
+base_sprite = NodePath("BaseSprite")
+resolve_sound = NodePath("ResolveSound")
+alert_sound = NodePath("AlertSound")
+
+[node name="ClickArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea"]
+shape = SubResource( 1 )
+
+[node name="BaseSprite" type="Sprite" parent="."]
+
+[node name="ResolveSound" type="AudioStreamPlayer2D" parent="."]
+bus = "SFX"
+
+[node name="AlertSound" type="AudioStreamPlayer2D" parent="."]
+bus = "SFX"
+
+[connection signal="input_event" from="ClickArea" to="." method="_on_ClickArea_input_event"]
+[connection signal="mouse_entered" from="ClickArea" to="." method="_on_ClickArea_mouse_entered"]
+[connection signal="mouse_exited" from="ClickArea" to="." method="_on_ClickArea_mouse_exited"]

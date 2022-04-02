@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://objects/base_objects/swipable_object.gd" type="Script" id=1]
+[ext_resource path="res://objects/base_objects/alertable_object.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/phone/phone_response_progress.png" type="Texture" id=3]
+[ext_resource path="res://ui/phone/phone_response_under.png" type="Texture" id=4]
+
+[node name="SwipableObject" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+swipe_progress = NodePath("SwipeProgress")
+
+[node name="SwipeProgress" type="TextureProgress" parent="." index="2"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

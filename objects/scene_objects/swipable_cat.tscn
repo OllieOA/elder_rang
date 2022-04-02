@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://objects/base_objects/swipable_object.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/scene_objects/swipable_cat.gd" type="Script" id=2]
+[ext_resource path="res://objects/scene_objects/cat.png" type="Texture" id=3]
+[ext_resource path="res://objects/base_objects/swipable_object_properties.gd" type="Script" id=4]
+[ext_resource path="res://objects/base_objects/alertable_object_properties.gd" type="Script" id=5]
+
+[sub_resource type="Resource" id=2]
+resource_local_to_scene = true
+script = ExtResource( 5 )
+object_name = "cat"
+max_alert_level = 3
+base_random_chance = 0.3
+activation_time = 0.0
+sleep_time = 30.0
+
+[sub_resource type="Resource" id=3]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+swipe_increment = 0.0
+
+[sub_resource type="Animation" id=1]
+resource_name = "sleeping"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 8, 9 ]
+}
+
+[node name="SwipableCat" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+alertable_object_properties = SubResource( 2 )
+swipable_object_properties = SubResource( 3 )
+cat_animator = NodePath("BaseSprite/AnimationPlayer")
+
+[node name="CollisionShape2D" parent="ClickArea" index="0"]
+rotation = 1.5708
+
+[node name="BaseSprite" parent="." index="1"]
+texture = ExtResource( 3 )
+hframes = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BaseSprite" index="0"]
+playback_speed = 0.2
+anims/sleeping = SubResource( 1 )
+
+[node name="SwipeProgress" parent="." index="2"]
+margin_left = -74.0
+margin_top = -102.0
+margin_right = 70.0
+margin_bottom = -62.0
+max_value = 1.0
+step = 0.01

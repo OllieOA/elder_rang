@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://ui/phone/phone.gd" type="Script" id=1]
 [ext_resource path="res://ui/phone/phone_base.png" type="Texture" id=2]
@@ -8,70 +8,273 @@
 [ext_resource path="res://ui/phone/phone_response_under.png" type="Texture" id=6]
 [ext_resource path="res://ui/phone/phone_response_over.png" type="Texture" id=7]
 [ext_resource path="res://ui/phone/phone_response_progress.png" type="Texture" id=8]
+[ext_resource path="res://ui/phone/phone_dialing.png" type="Texture" id=9]
+[ext_resource path="res://ui/phone/phone_missed.png" type="Texture" id=10]
+[ext_resource path="res://sounds/phone_vibrate.ogg" type="AudioStream" id=11]
+[ext_resource path="res://sounds/phone_ring.ogg" type="AudioStream" id=12]
 
-[node name="Phone" type="MarginContainer"]
+[sub_resource type="Animation" id=4]
+resource_name = "lose_and_fade"
+length = 3.0
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Contents:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1100, 290 ), Vector2( 392, -100 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Contents:rect_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 10.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Contents:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Contents/VBoxContainer/ConversationLength:percent_visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.25, 0.75, 1, 1.5, 1.75, 2.25, 2.5, 3 ),
+"transitions": PoolRealArray( 1e-05, 3.38614e-05, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05, 1.75277e-05, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Contents:rect_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 2, 2 ) ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath("Contents")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "hide"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "move_for_game"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Contents:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector2( 900, 250 ), Vector2( 1100, 290 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Contents:rect_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ 0.0, 10.0 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "vibrate"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Contents:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 900, 250 ), Vector2( 910, 250 ), Vector2( 890, 250 ), Vector2( 910, 250 ), Vector2( 890, 250 ), Vector2( 900, 250 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "vibrate_in_hand"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Contents:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1100, 290 ), Vector2( 1090, 290 ), Vector2( 1110, 290 ), Vector2( 1090, 290 ), Vector2( 1110, 290 ), Vector2( 1100, 290 ) ]
+}
+
+[node name="Phone" type="CanvasLayer"]
+layer = 4
+script = ExtResource( 1 )
+master_contents = NodePath("Contents")
+call_name = NodePath("Contents/VBoxContainer/Name")
+portrait_nan = NodePath("Contents/VBoxContainer/PortraitNan")
+conversation_length = NodePath("Contents/VBoxContainer/ConversationLength")
+positive_response = NodePath("Contents/VBoxContainer/PositiveResponse")
+response_timeout = NodePath("Contents/VBoxContainer/ResponseTimeout")
+negative_response = NodePath("Contents/VBoxContainer/NegativeResponse")
+portrait_dialling = NodePath("Contents/VBoxContainer/PortraitDialling")
+label_dialling = NodePath("Contents/VBoxContainer/Dialling")
+portrait_missed = NodePath("Contents/VBoxContainer/PortraitMissed")
+missed_call = NodePath("Contents/VBoxContainer/MissedCall")
+missed_name = NodePath("Contents/VBoxContainer/MissedName")
+call_back = NodePath("Contents/VBoxContainer/CallBack")
+phone_mover = NodePath("PhoneMover")
+phone_dialling_sound = NodePath("PhoneDialling")
+phone_vibrating_sound = NodePath("PhoneVibrating")
+
+[node name="PhoneDialling" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+bus = "SFX"
+
+[node name="PhoneVibrating" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+bus = "SFX"
+
+[node name="PhoneMover" type="AnimationPlayer" parent="."]
+anims/lose_and_fade = SubResource( 4 )
+anims/move_for_game = SubResource( 2 )
+anims/vibrate = SubResource( 1 )
+anims/vibrate_in_hand = SubResource( 3 )
+
+[node name="Contents" type="MarginContainer" parent="."]
+modulate = Color( 1, 1, 1, 0.993834 )
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -210.0
-margin_top = -324.0
+margin_left = -380.0
+margin_top = -470.0
+margin_right = -131.997
+margin_bottom = 408.0
 theme = ExtResource( 4 )
-script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-conversation_length_label = NodePath("VBoxContainer/ConversationLength")
 
-[node name="PhoneBackground" type="TextureRect" parent="."]
+[node name="PhoneBackground" type="TextureRect" parent="Contents"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 220.0
-margin_bottom = 430.0
+margin_right = 238.0
+margin_bottom = 868.0
 texture = ExtResource( 2 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Contents"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 220.0
-margin_bottom = 430.0
+margin_right = 238.0
+margin_bottom = 868.0
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Blank" type="MarginContainer" parent="VBoxContainer"]
-margin_right = 210.0
+[node name="Blank" type="MarginContainer" parent="Contents/VBoxContainer"]
+margin_right = 228.0
 margin_bottom = 20.0
 
-[node name="Portrait" type="TextureRect" parent="VBoxContainer"]
-margin_left = 33.0
+[node name="PortraitNan" type="TextureRect" parent="Contents/VBoxContainer"]
+margin_left = 42.0
 margin_top = 30.0
-margin_right = 177.0
+margin_right = 186.0
 margin_bottom = 174.0
 size_flags_horizontal = 4
 texture = ExtResource( 3 )
 
-[node name="Name" type="Label" parent="VBoxContainer"]
+[node name="PortraitMissed" type="TextureRect" parent="Contents/VBoxContainer"]
+margin_left = 42.0
 margin_top = 184.0
-margin_right = 210.0
-margin_bottom = 204.0
+margin_right = 186.0
+margin_bottom = 328.0
+size_flags_horizontal = 4
+texture = ExtResource( 10 )
+
+[node name="PortraitDialling" type="TextureRect" parent="Contents/VBoxContainer"]
+margin_left = 42.0
+margin_top = 338.0
+margin_right = 186.0
+margin_bottom = 482.0
+size_flags_horizontal = 4
+texture = ExtResource( 9 )
+
+[node name="Name" type="Label" parent="Contents/VBoxContainer"]
+margin_top = 492.0
+margin_right = 228.0
+margin_bottom = 512.0
 text = "NAN"
 align = 1
 
-[node name="ConversationLength" type="Label" parent="VBoxContainer"]
-margin_top = 214.0
-margin_right = 210.0
-margin_bottom = 234.0
-text = "00:00"
+[node name="Dialling" type="Label" parent="Contents/VBoxContainer"]
+margin_top = 522.0
+margin_right = 228.0
+margin_bottom = 542.0
+text = "DIALLING..."
 align = 1
 
-[node name="PositiveResponse" type="Button" parent="VBoxContainer"]
+[node name="ConversationLength" type="Label" parent="Contents/VBoxContainer"]
+margin_top = 552.0
+margin_right = 228.0
+margin_bottom = 572.0
+text = "00:00"
+align = 1
+percent_visible = 0.0
+
+[node name="PositiveResponse" type="Button" parent="Contents/VBoxContainer"]
 self_modulate = Color( 0.211765, 0.937255, 0.129412, 1 )
-margin_left = 22.0
-margin_top = 244.0
-margin_right = 188.0
-margin_bottom = 300.0
+margin_left = 31.0
+margin_top = 582.0
+margin_right = 197.0
+margin_bottom = 638.0
 size_flags_horizontal = 4
 custom_colors/font_color_focus = Color( 10, 10, 10, 1 )
 custom_colors/font_color = Color( 10, 10, 10, 1 )
@@ -80,22 +283,22 @@ custom_colors/font_color_pressed = Color( 10, 10, 10, 1 )
 custom_fonts/font = ExtResource( 5 )
 text = "POSITIVE"
 
-[node name="ResponseTimeout" type="TextureProgress" parent="VBoxContainer"]
-margin_left = 33.0
-margin_top = 310.0
-margin_right = 177.0
-margin_bottom = 328.0
+[node name="ResponseTimeout" type="TextureProgress" parent="Contents/VBoxContainer"]
+margin_left = 42.0
+margin_top = 648.0
+margin_right = 186.0
+margin_bottom = 666.0
 size_flags_horizontal = 4
 texture_under = ExtResource( 6 )
 texture_over = ExtResource( 7 )
 texture_progress = ExtResource( 8 )
 
-[node name="NegativeResponse" type="Button" parent="VBoxContainer"]
+[node name="NegativeResponse" type="Button" parent="Contents/VBoxContainer"]
 self_modulate = Color( 1, 0.121569, 0.121569, 1 )
-margin_left = 19.0
-margin_top = 338.0
-margin_right = 190.0
-margin_bottom = 394.0
+margin_left = 28.0
+margin_top = 676.0
+margin_right = 199.0
+margin_bottom = 732.0
 size_flags_horizontal = 4
 custom_colors/font_color_focus = Color( 10, 10, 10, 1 )
 custom_colors/font_color = Color( 10, 10, 10, 1 )
@@ -103,3 +306,35 @@ custom_colors/font_color_hover = Color( 10, 10, 10, 1 )
 custom_colors/font_color_pressed = Color( 10, 10, 10, 1 )
 custom_fonts/font = ExtResource( 5 )
 text = "NEGATIVE"
+
+[node name="MissedCall" type="Label" parent="Contents/VBoxContainer"]
+margin_top = 742.0
+margin_right = 228.0
+margin_bottom = 762.0
+text = "MISSED (2)"
+align = 1
+
+[node name="MissedName" type="Label" parent="Contents/VBoxContainer"]
+margin_top = 772.0
+margin_right = 228.0
+margin_bottom = 792.0
+text = "NAN"
+align = 1
+
+[node name="CallBack" type="Button" parent="Contents/VBoxContainer"]
+self_modulate = Color( 0.211765, 0.937255, 0.129412, 1 )
+margin_left = 24.0
+margin_top = 802.0
+margin_right = 204.0
+margin_bottom = 858.0
+size_flags_horizontal = 4
+custom_colors/font_color_focus = Color( 10, 10, 10, 1 )
+custom_colors/font_color = Color( 10, 10, 10, 1 )
+custom_colors/font_color_hover = Color( 10, 10, 10, 1 )
+custom_colors/font_color_pressed = Color( 10, 10, 10, 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "CALL BACK"
+
+[connection signal="pressed" from="Contents/VBoxContainer/PositiveResponse" to="." method="_on_PositiveResponse_pressed"]
+[connection signal="pressed" from="Contents/VBoxContainer/NegativeResponse" to="." method="_on_NegativeResponse_pressed"]
+[connection signal="pressed" from="Contents/VBoxContainer/CallBack" to="." method="_on_CallBack_pressed"]

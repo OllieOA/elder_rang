@@ -1,0 +1,221 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://ui/settings/options_container.gd" type="Script" id=1]
+[ext_resource path="res://theme/options_container.tres" type="Theme" id=2]
+[ext_resource path="res://ui/settings/settings_icon_sound.png" type="Texture" id=3]
+[ext_resource path="res://ui/settings/settings_icon_music.png" type="Texture" id=5]
+[ext_resource path="res://ui/settings/settings_icon_rightarrow.png" type="Texture" id=6]
+[ext_resource path="res://ui/settings/settings_icon_leftarrow.png" type="Texture" id=7]
+[ext_resource path="res://ui/settings/settings_icon_slash.png" type="Texture" id=17]
+[ext_resource path="res://ui/settings/audio_button.gd" type="Script" id=18]
+[ext_resource path="res://ui/settings/settings_icon_close.png" type="Texture" id=19]
+
+[sub_resource type="DynamicFontData" id=15]
+font_path = "res://theme/fonts/dogicapixel.ttf"
+
+[sub_resource type="DynamicFont" id=16]
+size = 18
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 15 )
+
+[node name="OptionsContainer" type="MarginContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -195.0
+margin_top = -239.5
+margin_right = 195.0
+margin_bottom = 239.5
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+nan_name_label = NodePath("PanelContainer/Contents/AllSettings/MatriarchName/HBoxContainer/SelectionLabel")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 380.0
+margin_bottom = 469.0
+
+[node name="Contents" type="MarginContainer" parent="PanelContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 362.0
+margin_bottom = 451.0
+
+[node name="AllSettings" type="VBoxContainer" parent="PanelContainer/Contents"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 344.0
+margin_bottom = 433.0
+
+[node name="Close" type="VBoxContainer" parent="PanelContainer/Contents/AllSettings"]
+margin_right = 334.0
+margin_bottom = 50.0
+
+[node name="CloseButton" type="MarginContainer" parent="PanelContainer/Contents/AllSettings/Close"]
+margin_left = 275.0
+margin_right = 334.0
+margin_bottom = 50.0
+size_flags_horizontal = 8
+custom_constants/margin_right = -5
+custom_constants/margin_top = -5
+custom_constants/margin_bottom = -5
+
+[node name="CloseButton" type="Button" parent="PanelContainer/Contents/AllSettings/Close/CloseButton"]
+margin_left = 10.0
+margin_top = -5.0
+margin_right = 64.0
+margin_bottom = 55.0
+hint_tooltip = "Close menu"
+icon = ExtResource( 19 )
+
+[node name="MasterAudio" type="VBoxContainer" parent="PanelContainer/Contents/AllSettings"]
+margin_top = 54.0
+margin_right = 334.0
+margin_bottom = 150.0
+script = ExtResource( 18 )
+target_bus = "Master"
+button_strikeout = NodePath("MasterAudioButtons/MasterMute/MasterStrikeout")
+button = NodePath("MasterAudioButtons/MasterMute")
+
+[node name="MasterAudioLabel" type="Label" parent="PanelContainer/Contents/AllSettings/MasterAudio"]
+margin_right = 334.0
+margin_bottom = 32.0
+text = "MASTER"
+align = 1
+
+[node name="MasterAudioButtons" type="HBoxContainer" parent="PanelContainer/Contents/AllSettings/MasterAudio"]
+margin_top = 36.0
+margin_right = 334.0
+margin_bottom = 96.0
+
+[node name="MasterMute" type="Button" parent="PanelContainer/Contents/AllSettings/MasterAudio/MasterAudioButtons"]
+margin_right = 54.0
+margin_bottom = 60.0
+hint_tooltip = "Mute/Unmute All Audio"
+toggle_mode = true
+icon = ExtResource( 3 )
+
+[node name="MasterStrikeout" type="TextureRect" parent="PanelContainer/Contents/AllSettings/MasterAudio/MasterAudioButtons/MasterMute"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 17 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterHSlider" type="HSlider" parent="PanelContainer/Contents/AllSettings/MasterAudio/MasterAudioButtons"]
+margin_left = 58.0
+margin_top = 10.0
+margin_right = 334.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicAudio" type="VBoxContainer" parent="PanelContainer/Contents/AllSettings"]
+margin_top = 154.0
+margin_right = 334.0
+margin_bottom = 264.0
+script = ExtResource( 18 )
+target_bus = "Music"
+button_strikeout = NodePath("MusicAudioButtons/MusicMute/MusicStrikeout")
+button = NodePath("MusicAudioButtons/MusicMute")
+
+[node name="MusicAudioLabel" type="Label" parent="PanelContainer/Contents/AllSettings/MusicAudio"]
+margin_right = 334.0
+margin_bottom = 32.0
+text = "MUSIC"
+align = 1
+
+[node name="MusicAudioButtons" type="HBoxContainer" parent="PanelContainer/Contents/AllSettings/MusicAudio"]
+margin_top = 36.0
+margin_right = 334.0
+margin_bottom = 96.0
+
+[node name="MusicMute" type="Button" parent="PanelContainer/Contents/AllSettings/MusicAudio/MusicAudioButtons"]
+margin_right = 54.0
+margin_bottom = 60.0
+hint_tooltip = "Mute/Unmute Music"
+toggle_mode = true
+icon = ExtResource( 5 )
+
+[node name="MusicStrikeout" type="TextureRect" parent="PanelContainer/Contents/AllSettings/MusicAudio/MusicAudioButtons/MusicMute"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 17 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicHSlider" type="HSlider" parent="PanelContainer/Contents/AllSettings/MusicAudio/MusicAudioButtons"]
+margin_left = 58.0
+margin_top = 10.0
+margin_right = 334.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BreakerLine2" type="HSeparator" parent="PanelContainer/Contents/AllSettings/MusicAudio"]
+modulate = Color( 0.552941, 0.552941, 0.552941, 1 )
+margin_top = 100.0
+margin_right = 334.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="MatriarchName" type="VBoxContainer" parent="PanelContainer/Contents/AllSettings"]
+margin_top = 268.0
+margin_right = 334.0
+margin_bottom = 399.0
+
+[node name="MatriarchNameLabel" type="Label" parent="PanelContainer/Contents/AllSettings/MatriarchName"]
+margin_right = 334.0
+margin_bottom = 67.0
+text = "GRANDMA'S
+NAME"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Contents/AllSettings/MatriarchName"]
+margin_top = 71.0
+margin_right = 334.0
+margin_bottom = 131.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="LeftButton" type="Button" parent="PanelContainer/Contents/AllSettings/MatriarchName/HBoxContainer"]
+margin_left = 19.0
+margin_right = 73.0
+margin_bottom = 60.0
+icon = ExtResource( 7 )
+
+[node name="SelectionLabel" type="Label" parent="PanelContainer/Contents/AllSettings/MatriarchName/HBoxContainer"]
+margin_left = 77.0
+margin_top = 23.0
+margin_right = 257.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 180, 14 )
+custom_fonts/font = SubResource( 16 )
+text = "GRANDMOTHER"
+align = 1
+
+[node name="RightButton" type="Button" parent="PanelContainer/Contents/AllSettings/MatriarchName/HBoxContainer"]
+margin_left = 261.0
+margin_right = 315.0
+margin_bottom = 60.0
+icon = ExtResource( 6 )
+
+[connection signal="pressed" from="PanelContainer/Contents/AllSettings/Close/CloseButton/CloseButton" to="." method="_on_CloseButton_pressed"]
+[connection signal="pressed" from="PanelContainer/Contents/AllSettings/MatriarchName/HBoxContainer/LeftButton" to="." method="_on_LeftButton_pressed"]
+[connection signal="pressed" from="PanelContainer/Contents/AllSettings/MatriarchName/HBoxContainer/RightButton" to="." method="_on_RightButton_pressed"]

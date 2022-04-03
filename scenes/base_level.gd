@@ -15,7 +15,6 @@ var mouse_to_viewport_ratio := Vector2.ZERO
 var mouse_to_viewport_normalised := Vector2.ZERO
 
 
-
 func _ready() -> void:
 	call_deferred("_get_camera_bounds")
 

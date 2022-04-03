@@ -27,5 +27,5 @@ func raise_alert(object: AlertableObject):
 		object_reference[object].object_alerting = true
 	if object_reference[object].current_alert_level < object_reference[object].max_alert_level:
 		object_reference[object].current_alert_level += 1
-		
+	
 	SignalBus.emit_signal("alert_raised", object)

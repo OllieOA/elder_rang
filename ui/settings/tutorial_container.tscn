@@ -1,0 +1,155 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://theme/options_container.tres" type="Theme" id=1]
+[ext_resource path="res://ui/hints/hint_swipe.tscn" type="PackedScene" id=2]
+[ext_resource path="res://theme/fonts/tutorial_font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://ui/meters/meters.tscn" type="PackedScene" id=4]
+
+[node name="TutorialContainer" type="MarginContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -400.0
+margin_top = -84.0
+margin_right = 400.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 1000, 0 )
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 990.0
+margin_bottom = 451.0
+
+[node name="TutorialContainer" type="MarginContainer" parent="PanelContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 972.0
+margin_bottom = 433.0
+
+[node name="TutorialContents" type="VBoxContainer" parent="PanelContainer/TutorialContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 954.0
+margin_bottom = 415.0
+
+[node name="Intro" type="Label" parent="PanelContainer/TutorialContainer/TutorialContents"]
+margin_right = 944.0
+margin_bottom = 84.0
+custom_colors/font_color = Color( 0.690196, 0.690196, 0.690196, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "The goal of Elder Rang is to successfully ignore your Nan's innane conversation and focus on the cool stuff you have going on, like petting your cat and playing the latest video game."
+align = 3
+autowrap = true
+
+[node name="Separator" type="HSeparator" parent="PanelContainer/TutorialContainer/TutorialContents"]
+margin_top = 88.0
+margin_right = 944.0
+margin_bottom = 98.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="MetersLabel" type="Label" parent="PanelContainer/TutorialContainer/TutorialContents"]
+margin_top = 102.0
+margin_right = 944.0
+margin_bottom = 186.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "You need to respond to your Nan when she asks you questions by being positive or negative - pay attention to what she says or she will get suspicious!"
+align = 3
+autowrap = true
+
+[node name="MetersHint" type="HBoxContainer" parent="PanelContainer/TutorialContainer/TutorialContents"]
+margin_top = 190.0
+margin_right = 944.0
+margin_bottom = 260.0
+size_flags_horizontal = 3
+
+[node name="MetersLabel2" type="Label" parent="PanelContainer/TutorialContainer/TutorialContents/MetersHint"]
+margin_top = 7.0
+margin_right = 570.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "Make sure you keep dealing with things that pop up, or your stress will rise!"
+align = 3
+autowrap = true
+
+[node name="Meters" parent="PanelContainer/TutorialContainer/TutorialContents/MetersHint" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_bottom = 0.0
+margin_left = 574.0
+margin_top = 0.0
+margin_right = 944.0
+margin_bottom = 70.0
+script = null
+
+[node name="VBoxContainer" parent="PanelContainer/TutorialContainer/TutorialContents/MetersHint/Meters" index="0"]
+margin_right = 360.0
+
+[node name="StressMeter" parent="PanelContainer/TutorialContainer/TutorialContents/MetersHint/Meters/VBoxContainer" index="0"]
+margin_right = 350.0
+
+[node name="StressLabel" parent="PanelContainer/TutorialContainer/TutorialContents/MetersHint/Meters/VBoxContainer/StressMeter" index="0"]
+margin_right = 202.0
+text = "Stress: 72%"
+
+[node name="StressProgress" parent="PanelContainer/TutorialContainer/TutorialContents/MetersHint/Meters/VBoxContainer/StressMeter" index="1"]
+margin_left = 206.0
+margin_right = 350.0
+value = 0.72
+
+[node name="SuspicionMeter" parent="PanelContainer/TutorialContainer/TutorialContents/MetersHint/Meters/VBoxContainer" index="1"]
+margin_right = 350.0
+
+[node name="SuspicionLabel" parent="PanelContainer/TutorialContainer/TutorialContents/MetersHint/Meters/VBoxContainer/SuspicionMeter" index="0"]
+margin_right = 202.0
+text = "Suspicion: 22%"
+
+[node name="SuspicionProgress" parent="PanelContainer/TutorialContainer/TutorialContents/MetersHint/Meters/VBoxContainer/SuspicionMeter" index="1"]
+margin_left = 206.0
+margin_right = 350.0
+value = 0.22
+
+[node name="Separator2" type="HSeparator" parent="PanelContainer/TutorialContainer/TutorialContents"]
+margin_top = 264.0
+margin_right = 944.0
+margin_bottom = 274.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="Hints" type="GridContainer" parent="PanelContainer/TutorialContainer/TutorialContents"]
+margin_top = 278.0
+margin_right = 944.0
+margin_bottom = 391.0
+size_flags_horizontal = 3
+columns = 2
+
+[node name="SwipeHint" type="HBoxContainer" parent="PanelContainer/TutorialContainer/TutorialContents/Hints"]
+margin_right = 472.0
+margin_bottom = 113.0
+size_flags_horizontal = 3
+
+[node name="SwipeLabel" type="Label" parent="PanelContainer/TutorialContainer/TutorialContents/Hints/SwipeHint"]
+margin_right = 336.0
+margin_bottom = 113.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "Click and drag back and forth on items with this hint. Fill up the bar to resolve it"
+autowrap = true
+
+[node name="HintSwipe" parent="PanelContainer/TutorialContainer/TutorialContents/Hints/SwipeHint" instance=ExtResource( 2 )]
+margin_left = 340.0
+margin_right = 472.0
+margin_bottom = 113.0
+
+[node name="Separator3" type="HSeparator" parent="PanelContainer/TutorialContainer/TutorialContents"]
+margin_top = 395.0
+margin_right = 944.0
+margin_bottom = 405.0
+rect_min_size = Vector2( 0, 10 )
+
+[editable path="PanelContainer/TutorialContainer/TutorialContents/MetersHint/Meters"]

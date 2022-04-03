@@ -10,6 +10,7 @@ script = ExtResource( 1 )
 swipe_progress = NodePath("SwipeProgress")
 
 [node name="SwipeProgress" type="TextureProgress" parent="." index="2"]
+modulate = Color( 0.333333, 0.521569, 0.662745, 1 )
 margin_right = 40.0
 margin_bottom = 40.0
 texture_under = ExtResource( 4 )

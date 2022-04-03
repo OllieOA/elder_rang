@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://theme/in_game_menu.tres" type="Theme" id=1]
 [ext_resource path="res://ui/common/discord_link.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://ui/common/options_button.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ui/common/tutorial_button.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/common/credits_button.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ui/settings/settings_icon_close.png" type="Texture" id=9]
+[ext_resource path="res://theme/options_container.tres" type="Theme" id=10]
 
 [node name="SettingPanelContainer" type="MarginContainer"]
 anchor_left = 0.5
@@ -42,28 +44,41 @@ margin_top = 10.0
 margin_right = 314.0
 margin_bottom = 314.0
 
-[node name="Options" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 6 )]
-margin_bottom = 44.0
+[node name="OptionsAndClose" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_right = 304.0
+margin_bottom = 60.0
+
+[node name="Options" parent="PanelContainer/MarginContainer/VBoxContainer/OptionsAndClose" instance=ExtResource( 6 )]
+margin_top = 16.0
+margin_right = 246.0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/OptionsAndClose"]
+margin_left = 250.0
+margin_right = 304.0
+margin_bottom = 60.0
+theme = ExtResource( 10 )
+icon = ExtResource( 9 )
 
 [node name="Tutorial" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 7 )]
-margin_top = 48.0
-margin_bottom = 92.0
+margin_bottom = 108.0
 
 [node name="Credits" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 8 )]
-margin_top = 96.0
-margin_bottom = 140.0
+margin_top = 112.0
+margin_bottom = 156.0
 
 [node name="Restart" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 144.0
+margin_top = 160.0
 margin_right = 304.0
-margin_bottom = 188.0
+margin_bottom = 204.0
 text = "RESTART"
 
 [node name="Socials" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 margin_left = 21.0
-margin_top = 192.0
+margin_top = 208.0
 margin_right = 283.0
-margin_bottom = 288.0
+margin_bottom = 304.0
 size_flags_horizontal = 4
 size_flags_vertical = 2
 
@@ -80,3 +95,5 @@ margin_bottom = 96.0
 margin_left = 180.0
 margin_right = 262.0
 margin_bottom = 96.0
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/OptionsAndClose/Button" to="." method="_on_Button_pressed"]

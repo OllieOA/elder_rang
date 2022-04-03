@@ -80,13 +80,15 @@ var missed_call_base_time = 3.0
 
 var dialling_timer = Timer.new()
 var missed_call_timer = Timer.new()
+var pickup_timer = Timer.new()
 var rng = RandomNumberGenerator.new()
 
 var dialling_visibile_characters = 0
 
 # Prompts
 var prompt_timer = Timer.new()
-
+var expected_response: int
+var response_correct: bool
 
 func _ready():
 	rng.randomize()
@@ -102,9 +104,10 @@ func _ready():
 	missed_call_timer.connect("timeout", self, "_update_missed_calls")
 	missed_call_timer.start()
 	
-	call_back.disabled = true
-	SignalBus.connect("title_fade_complete", self, "_handle_title_fade_complete")
+	call_back.disabled = false
 	SignalBus.connect("nan_name_updated", self, "_handle_nan_name_updated")
+	
+	SignalBus.connect("question_asked", self, "_handle_question_asked")
 	
 
 func _show_state():
@@ -129,10 +132,17 @@ func _process(delta: float) -> void:
 		# Transition states
 		State.DIAL_PRESSED:
 			missed_call_timer.stop()
+			# Dial tone timer
 			dialling_timer.set_wait_time(0.5)
 			dialling_timer.autostart = true
 			add_child(dialling_timer)
 			dialling_timer.connect("timeout", self, "_update_dialling")
+			
+			# Pikcup timer
+			pickup_timer.set_wait_time(8.0)
+			pickup_timer.autostart = true
+			add_child(pickup_timer)
+			pickup_timer.connect("timeout", self, "_pick_up_phone")
 			
 			state = State.DIALLING
 			_show_state()
@@ -175,21 +185,31 @@ func _update_dialling() -> void:
 	label_dialling.visible_characters = chars_to_show
 
 
+func _pick_up_phone() -> void:
+	state = State.PICKUP
+	phone_dialling_sound.stop()
+	pickup_timer.stop()
+	SignalBus.emit_signal("nan_answered_phone")
+
+
 func _call_nan() -> void:
-#	state = State.DIAL_PRESSED
-	state = State.INGAME
+	state = State.DIAL_PRESSED
 	phone_mover.play("move_for_game")
 	phone_dialling_sound.play()
+	GameControl.goto_scene("res://scenes/base_level.tscn", 0.2)
+	SignalBus.emit_signal("dialled_nan")
 
 
 func _enable_prompt() -> void:
-	positive_response.disabled = false
-	negative_response.disabled = false
+	positive_response.visible = true
+	negative_response.visible = true
+	response_timeout.visible = true
 	
 	
 func _disable_prompt() -> void:
-	positive_response.disabled = true
-	negative_response.disabled = true
+	positive_response.visible = false
+	negative_response.visible = false
+	response_timeout.visible = false
 
 
 # Buttons
@@ -208,13 +228,15 @@ func _start_prompt_timer() -> void:
 
 
 func _on_PositiveResponse_pressed() -> void:
-	SignalBus.emit_signal("positive_response")
+	response_correct = DialogueDatabase.Response.HAPPY == expected_response
+	SignalBus.emit_signal("response_provided", response_correct)
 	_stop_prompt_timer()
 	_disable_prompt()
 	
 
 func _on_NegativeResponse_pressed() -> void:
-	SignalBus.emit_signal("negative_response")
+	response_correct = DialogueDatabase.Response.SAD == expected_response
+	SignalBus.emit_signal("response_provided", response_correct)
 	_stop_prompt_timer()
 	_disable_prompt()
 
@@ -225,9 +247,10 @@ func _redraw_labels():
 
 # Signal handles
 
-func _handle_title_fade_complete():
-	call_back.disabled = false
-
 
 func _handle_nan_name_updated():
 	_redraw_labels()
+
+
+func _handle_question_asked(expected_response_question):
+	expected_response = expected_response_question

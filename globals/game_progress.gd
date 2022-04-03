@@ -6,16 +6,20 @@ var grandmother_suspicion := 0.0
 var conversation_length := 0.0
 var conversation_length_string := "00:00"
 
-var game_started := true
+var game_started := false
 
 var prompt_timer_max := 5.0
 var prompt_timer_decrement := 0.2
 var prompt_timer_min := 1.5
 var prompt_timer_time
 
+var dialogue_difficulty := 2
+
+
 func _ready() -> void:
 	SignalBus.connect("positive_response", self, "_handle_positive_response")
 	SignalBus.connect("negative_response", self, "_handle_negative_response")
+	SignalBus.connect("nan_answered_phone", self, "_handle_nan_answered_phone")
 	prompt_timer_time = prompt_timer_max
 
 
@@ -47,3 +51,7 @@ func _handle_positive_response() -> void:
 
 func _handle_negative_response() -> void:
 	_decrement_prompt_timer()
+	
+
+func _handle_nan_answered_phone() -> void:
+	game_started = true

@@ -20,4 +20,8 @@
 ## UI
 - [ ] Audio functionality/logic (OptionsContainer)
 - [ ] Button sounds (Yag: ButtonWithSound class)
-- [ ] Capture and reference to Grandma updated with setting
+- [x] Capture and reference to Grandma updated with setting
+- [x] Phone needs to be middle layer
+- [ ] Fix dialogue percentage anomaly
+- [ ] Fix tutorial to have multiple panels
+- [ ] Fix UI buttons not disappearing on phone

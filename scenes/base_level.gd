@@ -4,7 +4,6 @@ class_name BaseLevel extends Node2D
 export (NodePath) onready var player_camera = get_node(player_camera) as Camera2D
 export (NodePath) onready var background = get_node(background) as Sprite
 
-export (NodePath) onready var debug_label = get_node(debug_label) as Label
 
 
 # Camera vars
@@ -24,7 +23,6 @@ func _process(delta: float) -> void:
 	mouse_to_viewport_ratio = get_viewport().get_mouse_position() / (get_viewport_rect().size * Vector2(0.5, 0.5))
 	mouse_to_viewport_normalised = 2 * (mouse_to_viewport_ratio - Vector2(1, 1))
 	
-	debug_label.set_text(str(mouse_to_viewport_ratio))
 	camera_target_position = camera_centre + mouse_to_viewport_normalised * camera_movement_size / 2
 	player_camera.position = lerp(player_camera.position, camera_target_position, 0.2)
 

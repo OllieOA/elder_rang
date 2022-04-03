@@ -154,7 +154,7 @@ tracks/0/keys = {
 }
 
 [node name="Phone" type="CanvasLayer"]
-layer = 4
+layer = 3
 script = ExtResource( 1 )
 master_contents = NodePath("Contents")
 call_name = NodePath("Contents/VBoxContainer/Name")
@@ -193,10 +193,11 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -380.0
-margin_top = -470.0
-margin_right = -131.997
-margin_bottom = 408.0
+margin_left = -180.0
+margin_top = -430.0
+margin_right = 68.0031
+margin_bottom = 448.0
+rect_rotation = 10.0
 theme = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -267,13 +268,12 @@ margin_right = 228.0
 margin_bottom = 572.0
 text = "00:00"
 align = 1
-percent_visible = 0.0
 
 [node name="PositiveResponse" type="Button" parent="Contents/VBoxContainer"]
 self_modulate = Color( 0.211765, 0.937255, 0.129412, 1 )
-margin_left = 31.0
+margin_left = 53.0
 margin_top = 582.0
-margin_right = 197.0
+margin_right = 175.0
 margin_bottom = 638.0
 size_flags_horizontal = 4
 custom_colors/font_color_focus = Color( 10, 10, 10, 1 )
@@ -281,7 +281,7 @@ custom_colors/font_color = Color( 10, 10, 10, 1 )
 custom_colors/font_color_hover = Color( 10, 10, 10, 1 )
 custom_colors/font_color_pressed = Color( 10, 10, 10, 1 )
 custom_fonts/font = ExtResource( 5 )
-text = "POSITIVE"
+text = "HAPPY"
 
 [node name="ResponseTimeout" type="TextureProgress" parent="Contents/VBoxContainer"]
 margin_left = 42.0
@@ -294,18 +294,18 @@ texture_over = ExtResource( 7 )
 texture_progress = ExtResource( 8 )
 
 [node name="NegativeResponse" type="Button" parent="Contents/VBoxContainer"]
-self_modulate = Color( 1, 0.121569, 0.121569, 1 )
-margin_left = 28.0
+self_modulate = Color( 0.054902, 0.298039, 0.784314, 1 )
+margin_left = 70.0
 margin_top = 676.0
-margin_right = 199.0
+margin_right = 158.0
 margin_bottom = 732.0
 size_flags_horizontal = 4
-custom_colors/font_color_focus = Color( 10, 10, 10, 1 )
+custom_colors/font_color_focus = Color( 20, 20, 20, 1 )
 custom_colors/font_color = Color( 10, 10, 10, 1 )
 custom_colors/font_color_hover = Color( 10, 10, 10, 1 )
 custom_colors/font_color_pressed = Color( 10, 10, 10, 1 )
 custom_fonts/font = ExtResource( 5 )
-text = "NEGATIVE"
+text = "SAD"
 
 [node name="MissedCall" type="Label" parent="Contents/VBoxContainer"]
 margin_top = 742.0
@@ -322,11 +322,12 @@ text = "NAN"
 align = 1
 
 [node name="CallBack" type="Button" parent="Contents/VBoxContainer"]
+visible = false
 self_modulate = Color( 0.211765, 0.937255, 0.129412, 1 )
 margin_left = 24.0
-margin_top = 802.0
+margin_top = 464.0
 margin_right = 204.0
-margin_bottom = 858.0
+margin_bottom = 520.0
 size_flags_horizontal = 4
 custom_colors/font_color_focus = Color( 10, 10, 10, 1 )
 custom_colors/font_color = Color( 10, 10, 10, 1 )

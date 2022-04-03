@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://ui/hints/swipe_hint_arrow.png" type="Texture" id=1]
+[ext_resource path="res://ui/hints/drag_hint_arrow.png" type="Texture" id=1]
 [ext_resource path="res://ui/hints/default_cursor_56.png" type="Texture" id=2]
 [ext_resource path="res://ui/hints/hint_swipe.gd" type="Script" id=3]
 
@@ -14,13 +14,13 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 2, 2, 0.5 ),
+"times": PoolRealArray( 0, 0.7, 1 ),
+"transitions": PoolRealArray( 2, 2, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 35 ), Vector2( 75, 35 ), Vector2( 0, 35 ) ]
+"values": [ Vector2( 30, 80 ), Vector2( 30, 0 ), Vector2( 30, 0 ) ]
 }
 
-[node name="HintSwipe" type="MarginContainer"]
+[node name="HintDrag" type="MarginContainer"]
 margin_right = 112.0
 margin_bottom = 112.0
 rect_min_size = Vector2( 112, 112 )
@@ -31,10 +31,10 @@ __meta__ = {
 hint_animator = NodePath("HintAnimator")
 
 [node name="Cursor" type="TextureRect" parent="."]
-margin_left = 65.8456
-margin_top = 35.0
-margin_right = 177.846
-margin_bottom = 147.0
+margin_left = 30.0
+margin_top = 75.7228
+margin_right = 142.0
+margin_bottom = 187.722
 texture = ExtResource( 2 )
 
 [node name="Arrow" type="TextureRect" parent="."]

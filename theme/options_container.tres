@@ -108,6 +108,7 @@ margin_bottom = 15.0
 [sub_resource type="StyleBoxLine" id=18]
 color = Color( 0.501961, 0.501961, 0.501961, 1 )
 thickness = 3
+vertical = true
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://theme/fonts/dogicapixel.ttf"

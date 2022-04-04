@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/dialogue/dialogue.gd" type="Script" id=1]
 [ext_resource path="res://theme/in_game_menu.tres" type="Theme" id=2]
+[ext_resource path="res://sounds/nan_speech.ogg" type="AudioStream" id=3]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://theme/fonts/dogicapixel.ttf"
@@ -30,6 +31,7 @@ __meta__ = {
 }
 dialogue_label = NodePath("MarginContainer/DialogueLabel")
 text_timer = NodePath("TextTimer")
+rambling_noise = NodePath("RamblingNoise")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_left = 8.0
@@ -52,6 +54,8 @@ lines_skipped = 1
 max_lines_visible = 2
 
 [node name="RamblingNoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "SFX"
 
 [node name="PositiveResponse" type="AudioStreamPlayer" parent="."]
 

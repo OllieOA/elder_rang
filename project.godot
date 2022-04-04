@@ -24,6 +24,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/base_level.gd"
 }, {
+"base": "AlertableObject",
+"class": "ClickableObject",
+"language": "GDScript",
+"path": "res://objects/base_objects/clickable_object.gd"
+}, {
+"base": "Resource",
+"class": "ClickableObjectProperties",
+"language": "GDScript",
+"path": "res://objects/base_objects/clickable_object_properties.gd"
+}, {
 "base": "Resource",
 "class": "DialogueDatabase",
 "language": "GDScript",
@@ -48,6 +58,8 @@ _global_script_class_icons={
 "AlertableObject": "",
 "AlertableObjectProperties": "",
 "BaseLevel": "",
+"ClickableObject": "",
+"ClickableObjectProperties": "",
 "DialogueDatabase": "",
 "GlobalDataObject": "",
 "SwipableObject": "",

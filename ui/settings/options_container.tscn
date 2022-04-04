@@ -82,6 +82,7 @@ script = ExtResource( 18 )
 target_bus = "Master"
 button_strikeout = NodePath("MasterAudioButtons/MasterMute/MasterStrikeout")
 button = NodePath("MasterAudioButtons/MasterMute")
+audio_slider = NodePath("MasterAudioButtons/MasterHSlider")
 
 [node name="MasterAudioLabel" type="Label" parent="PanelContainer/Contents/AllSettings/MasterAudio"]
 margin_right = 334.0
@@ -117,6 +118,8 @@ margin_right = 334.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -129,6 +132,7 @@ script = ExtResource( 18 )
 target_bus = "Music"
 button_strikeout = NodePath("MusicAudioButtons/MusicMute/MusicStrikeout")
 button = NodePath("MusicAudioButtons/MusicMute")
+audio_slider = NodePath("MusicAudioButtons/MusicHSlider")
 
 [node name="MusicAudioLabel" type="Label" parent="PanelContainer/Contents/AllSettings/MusicAudio"]
 margin_right = 334.0
@@ -164,6 +168,8 @@ margin_right = 334.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
 __meta__ = {
 "_edit_use_anchors_": false
 }

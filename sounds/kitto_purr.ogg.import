@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/kitto_purr.ogg-12ba3cbc28ca26b6b2b0eb64384a3e96.oggstr"
+
+[deps]
+
+source_file="res://sounds/kitto_purr.ogg"
+dest_files=[ "res://.import/kitto_purr.ogg-12ba3cbc28ca26b6b2b0eb64384a3e96.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

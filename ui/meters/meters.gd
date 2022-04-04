@@ -16,6 +16,13 @@ const MED_COLOR = Color("f0ec0c")
 const BAD_COLOR = Color("f50e0e")
 
 
+func _ready() -> void:
+	stress_progress.value = 0
+	suspicion_progress.value = 0
+	SignalBus.connect("nan_answered_phone", self, "_handle_nan_answered_phone")
+	hide()
+
+
 func _process(delta: float) -> void:
 	_set_text_and_color(GameProgress.grandmother_suspicion, suspicion_label, suspicion_meter, suspicion_progress)
 	_set_text_and_color(GameProgress.player_stress, stress_label, stress_meter, stress_progress)
@@ -26,12 +33,12 @@ func _set_text_and_color(parameter: float, text_node: Label, modulate_node: HBox
 	progress_node.value = parameter
 	
 	if text_node == stress_label:
-		parameter_text = "Stress: %d%%" % parameter_text_value
+		parameter_text = "Stress: %3.1f%%" % parameter_text_value
 	elif text_node == suspicion_label:
 		if parameter > 0.69 and parameter < 0.7:
 			parameter_text = "sus %d%%" % parameter_text_value
 		else: 
-			parameter_text = "Suspicion: %d%%" % parameter_text_value
+			parameter_text = "Suspicion: %3.1f%%" % parameter_text_value
 	
 	text_node.set_text(parameter_text)
 	
@@ -43,4 +50,5 @@ func _set_text_and_color(parameter: float, text_node: Label, modulate_node: HBox
 		modulate_node.modulate = BAD_COLOR
 		
 		
-	
+func _handle_nan_answered_phone():
+	show()

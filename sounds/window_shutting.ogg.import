@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/window_shutting.ogg-03085a4f258db4927896f458df08c8e6.oggstr"
+
+[deps]
+
+source_file="res://sounds/window_shutting.ogg"
+dest_files=[ "res://.import/window_shutting.ogg-03085a4f258db4927896f458df08c8e6.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -2,6 +2,7 @@
 ### ORGANISATION
 - [x] Git repo
 - [ ] Itch page - Butler pipeline
+- [ ]  "Ludum Dare but I spent 4 hours tweaking fake UI"
 - [x] 72 hour breakdown/plan 
 - [ ] Todo template
 - [x] Check when babay's breath blooms
@@ -13,7 +14,7 @@
 - [ ] Game over
 - [x] Level select (square buttons)
 - [x] BUTTON FEEDBACK
-- [ ] Splash Screen
+- [x] Splash Screen
 
 ### MUSIC
 - [ ] FL Studio project

@@ -4,6 +4,9 @@ extends PanelContainer
 export (NodePath) onready var dialogue_label = get_node(dialogue_label) as Label
 export (NodePath) onready var text_timer = get_node(text_timer) as Timer
 
+export (NodePath) onready var rambling_noise = get_node(rambling_noise) as AudioStreamPlayer
+
+
 onready var dia_db = DialogueDatabase.new()
 onready var rng = RandomNumberGenerator.new()
 
@@ -45,6 +48,7 @@ func _ready() -> void:
 
 
 func _init_dialogue():
+	rambling_noise.play()
 	var init_phrase = _select_phrase_from(greeting_replies)
 	_write_dialogue(init_phrase, dia_db.Type.GREETING, -1)
 #	_write_dialogue("There's so much I've been planning to discuss with you! You know what happened at the pond today? I was feeding the birds and an old woman walked by. She had such a kind face, a nice smile and such pretty brown hair. You know me and old ladies. I do try to be nice to everyone I meet.")
@@ -58,12 +62,14 @@ func _write_dialogue(dialogue_text: String, type: int, expected_response: int):
 
 
 func _write_dialogue_immediately(dialogue_text: String) -> void:
+	rambling_noise.stream_paused = true
 	dialogue_label.percent_visible = 1
 	dialogue_label.lines_skipped = 0
 	dialogue_label.set_text(dialogue_text)
 
 
 func _start_dialogue_scroll(type: int, expected_response: int):
+	rambling_noise.stream_paused = false
 	text_timer.set_wait_time(text_loop_time)
 	dialogue_label.max_lines_visible = max_lines_visible_value
 	line_count = dialogue_label.get_line_count()
@@ -106,7 +112,6 @@ func _select_phrase_from(phrase_array) -> String:
 
 
 func _select_next_ramble_phrase() -> Array:
-	print("START OF TURN ", dia_db.dialogue_database)
 	var is_available = _check_if_dialogue_available()
 	
 	if not is_available:
@@ -114,7 +119,7 @@ func _select_next_ramble_phrase() -> Array:
 	
 	var available_dialogue = []
 	for dialogue_object in dia_db.dialogue_database:
-		if not dialogue_object["used"] and dialogue_object["difficulty"] < GameProgress.dialogue_difficulty:
+		if not dialogue_object["used"]:
 			available_dialogue.append(dialogue_object)
 			
 	var next_dialogue_object = available_dialogue[rng.randi() % available_dialogue.size()]
@@ -123,15 +128,13 @@ func _select_next_ramble_phrase() -> Array:
 	next_phrase = next_dialogue_object["content"]
 	next_phrase_expected_response = next_dialogue_object["correct_response"]
 	
-	print("END OF TURN ", dia_db.dialogue_database)
 	return [next_phrase, dia_db.Type.RAMBLE, next_phrase_expected_response]
 	
 
 func _check_if_dialogue_available() -> bool:
 	var available = false
 	for dialogue_object in dia_db.dialogue_database:
-		if dialogue_object["difficulty"] < GameProgress.dialogue_difficulty:
-			available = available or dialogue_object["used"]
+		available = available or not dialogue_object["used"]
 	return available
 
 

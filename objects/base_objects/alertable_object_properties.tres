@@ -5,8 +5,7 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource( 1 )
-object_name = "cat"
-max_alert_level = 3
-base_random_chance = 0.3
-activation_time = 0.0
+object_name = "mouse"
+base_random_chance = 30
+activation_time = 0
 sleep_time = 30.0

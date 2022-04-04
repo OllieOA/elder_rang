@@ -51,11 +51,11 @@ func _handle_tutorial_close_menu_pressed():
 	
 	
 func _handle_credits_button_pressed():
-	pass
+	credits_container.show()
 	
 	
 func _handle_credits_close_menu_pressed():
-	pass
+	credits_container.hide()
 	
 	
 func _handle_options_button_pressed():
@@ -78,5 +78,4 @@ func _hide_all_ui():
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("secondary_click") and settings_button.pressed:
-		print("INPUT RECEIVED")
 		_hide_all_ui()

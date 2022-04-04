@@ -8,9 +8,8 @@ var mouse_movement := 0.0
 
 
 func _ready() -> void:
+	_set_alert(false)
 	swipable_object_properties.set_object(self)
-	SignalBus.connect("swipe_complete", self, "_handle_swipe_complete")
-	SignalBus.connect("alert_raised", self, "_raise_alert")
 	swipe_progress.visible = false
 
 
@@ -46,26 +45,19 @@ func _on_ClickArea_mouse_entered() -> void:
 
 # General methods:
 
-func _raise_alert() -> void:
-	._raise_alert()
-	if not swipe_progress.visible:
-		swipe_progress.visible = true
-
-
-#func increment_swipe(delta):
-#	swipe_amount += (swipe_increment * delta)
-#
-#	if swipe_amount >= 1.0:
-#		SignalBus.emit_signal("swipe_complete", object)
-#		refresh_swipe()
-#
-#
-#func refresh_swipe():
-#	swipe_amount = 0.0
+func _set_alert(alerting: bool) -> void:
+	._set_alert(alerting)
+	if alerting:
+		if not swipe_progress.visible:
+			swipe_progress.visible = true
+	else:
+		if swipe_progress.visible:
+			swipe_progress.visible = false
 
 
 # Handle signals
 
-func _handle_swipe_complete(object):
-	if object == self:
-		._resolve_alert()
+# OVERLOADED
+func _handle_alert_resolved(object: AlertableObject) -> void:
+	._handle_alert_resolved(object)
+	

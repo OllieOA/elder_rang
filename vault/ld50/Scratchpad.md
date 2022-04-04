@@ -7,7 +7,7 @@ YOU DI...
 
 
 
- "hi, grandson, how are you today? There's so much I've been planning to discuss with you, like you know what happened at the pond today. I was feeding the birds and an old woman walked by. She had such a kind face, a nice smile and such pretty blond hair. You know me and old ladies. I do try to be nice to everyone I meet." - hittaus
+ "Hi, grandchild, how are you today? There's so much I've been planning to discuss with you, like you know what happened at the pond today. I was feeding the birds and an old woman walked by. She had such a kind face, a nice smile and such pretty blond hair. You know me and old ladies. I do try to be nice to everyone I meet." - hittaus
 
 My neighbour, you know Rob? He has those petunias in the front yard? Anyway, he painted his mailbox sky gray, which just infuriates me! I'm going to report him because he knows, HE KNOWS, that we have to paint our letterboxes brushed metal gray! But he just does whatever he wants, and I'm not going to let him get away with it this time - Daverinoe
 

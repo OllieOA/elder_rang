@@ -20,7 +20,7 @@ func increment_swipe(value):
 	swipe_amount += (swipe_increment * value)
 	
 	if swipe_amount >= 1.0:
-		SignalBus.emit_signal("swipe_complete", object)
+		SignalBus.emit_signal("alert_resolved", object)
 		refresh_swipe()
 
 

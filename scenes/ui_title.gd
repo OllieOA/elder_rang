@@ -38,11 +38,11 @@ func _handle_tutorial_close_menu_pressed():
 	
 	
 func _handle_credits_button_pressed():
-	pass
+	credits_container.show()
 	
 	
 func _handle_credits_close_menu_pressed():
-	pass
+	credits_container.hide()
 	
 	
 func _handle_options_button_pressed():

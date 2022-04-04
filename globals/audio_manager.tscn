@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://globals/audio_manager.gd" type="Script" id=1]
+[ext_resource path="res://sounds/title_theme.ogg" type="AudioStream" id=2]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource( 1 )
+title_music = NodePath("TitleMusic")
+title_music_fade = NodePath("TitleMusic/TitleMusicFadeTween")
+
+[node name="TitleMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+bus = "Music"
+
+[node name="TitleMusicFadeTween" type="Tween" parent="TitleMusic"]

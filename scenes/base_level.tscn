@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://scenes/base_level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/main_scene.png" type="Texture" id=2]
+[ext_resource path="res://objects/base_objects/clickable_object_properties.gd" type="Script" id=3]
 [ext_resource path="res://ui/settings/setting_panel_container.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/dialogue/dialogue.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/meters/meters.tscn" type="PackedScene" id=6]
@@ -14,14 +15,63 @@
 [ext_resource path="res://ui/ui_game_script.gd" type="Script" id=13]
 [ext_resource path="res://ui/settings/settings_icon_base.png" type="Texture" id=14]
 [ext_resource path="res://theme/options_container.tres" type="Theme" id=15]
+[ext_resource path="res://objects/scene_objects/clickable_keyboard.tscn" type="PackedScene" id=16]
+[ext_resource path="res://objects/passive_objects/nft_screen.gd" type="Script" id=17]
+[ext_resource path="res://objects/scene_objects/swipable_mouse.tscn" type="PackedScene" id=18]
+[ext_resource path="res://objects/passive_objects/game_screen.tscn" type="PackedScene" id=19]
+[ext_resource path="res://objects/passive_objects/nft_screen.tscn" type="PackedScene" id=20]
+[ext_resource path="res://objects/passive_objects/shadow.png" type="Texture" id=21]
+[ext_resource path="res://scenes/shadow.gd" type="Script" id=22]
+[ext_resource path="res://objects/scene_objects/clickable_light_switch.tscn" type="PackedScene" id=23]
+[ext_resource path="res://objects/passive_objects/outside.png" type="Texture" id=24]
+[ext_resource path="res://ui/snow_particles.tres" type="Material" id=25]
+[ext_resource path="res://objects/scene_objects/clickable_portait.tscn" type="PackedScene" id=26]
+[ext_resource path="res://objects/scene_objects/portait_combine.png" type="Texture" id=27]
+[ext_resource path="res://objects/scene_objects/portait_paper.png" type="Texture" id=28]
+[ext_resource path="res://ui/settings/restart.tscn" type="PackedScene" id=29]
+[ext_resource path="res://theme/in_game_menu.tres" type="Theme" id=30]
+
+[sub_resource type="Animation" id=11]
+resource_name = "fade_to_black"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="DynamicFontData" id=12]
+font_path = "res://theme/fonts/times.ttf"
+
+[sub_resource type="DynamicFont" id=13]
+size = 50
+font_data = SubResource( 12 )
+
+[sub_resource type="Resource" id=5]
+resource_local_to_scene = true
+script = ExtResource( 9 )
+object_name = "mouse"
+base_random_chance = 30
+activation_time = 0
+sleep_time = 30.0
+
+[sub_resource type="Resource" id=6]
+resource_local_to_scene = true
+script = ExtResource( 7 )
+swipe_increment = 0.05
 
 [sub_resource type="Resource" id=1]
 resource_local_to_scene = true
 script = ExtResource( 9 )
 object_name = "cat"
-max_alert_level = 3
-base_random_chance = 0.3
-activation_time = 0.0
+base_random_chance = 30
+activation_time = 0
 sleep_time = 30.0
 
 [sub_resource type="Resource" id=2]
@@ -29,12 +79,81 @@ resource_local_to_scene = true
 script = ExtResource( 7 )
 swipe_increment = 0.02
 
+[sub_resource type="Resource" id=3]
+resource_local_to_scene = true
+script = ExtResource( 9 )
+object_name = "keyboard"
+base_random_chance = 30
+activation_time = 0
+sleep_time = 30.0
+
+[sub_resource type="Resource" id=4]
+resource_local_to_scene = true
+script = ExtResource( 3 )
+click_increment = 0.1
+
+[sub_resource type="Resource" id=7]
+resource_local_to_scene = true
+script = ExtResource( 9 )
+object_name = "light"
+base_random_chance = 30
+activation_time = 20
+sleep_time = 30.0
+
+[sub_resource type="Resource" id=8]
+resource_local_to_scene = true
+script = ExtResource( 3 )
+click_increment = 1.0
+
+[sub_resource type="Resource" id=9]
+resource_local_to_scene = true
+script = ExtResource( 9 )
+object_name = "portrait_harvest"
+base_random_chance = 30
+activation_time = 20
+sleep_time = 30.0
+
+[sub_resource type="Resource" id=10]
+resource_local_to_scene = true
+script = ExtResource( 3 )
+click_increment = 0.15
+
+[sub_resource type="Resource" id=14]
+resource_local_to_scene = true
+script = ExtResource( 9 )
+object_name = "mouse"
+base_random_chance = 30
+activation_time = 0
+sleep_time = 30.0
+
+[sub_resource type="Resource" id=15]
+resource_local_to_scene = true
+script = ExtResource( 3 )
+click_increment = 0.15
+
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource( 1 )
 player_camera = NodePath("PlayerCamera")
 background = NodePath("Background/MainBackground")
+black_fade = NodePath("MenuUI/BlackFade")
+black_fade_animator = NodePath("MenuUI/BlackFade/AnimationPlayer")
+you_died_label = NodePath("MenuUI/GameLostText/YouDied")
+end_game_restart = NodePath("MenuUI/RestartContainer")
 
 [node name="Background" type="Node2D" parent="."]
+
+[node name="Outside" type="Sprite" parent="Background"]
+light_mask = 0
+position = Vector2( 198, 396 )
+texture = ExtResource( 24 )
+
+[node name="SnowParticles" type="Particles2D" parent="Background"]
+position = Vector2( 403, 126 )
+amount = 200
+lifetime = 5.0
+preprocess = 20.0
+visibility_rect = Rect2( -100, -100, 1200, 800 )
+process_material = ExtResource( 25 )
 
 [node name="MainBackground" type="Sprite" parent="Background"]
 texture = ExtResource( 2 )
@@ -52,39 +171,92 @@ tutorial_container = NodePath("TutorialContainer")
 credits_container = NodePath("CreditsContainer")
 restart_container = NodePath("RestartContainer")
 
-[node name="ColorRect" type="ColorRect" parent="MenuUI"]
-visible = false
+[node name="BlackFade" type="ColorRect" parent="MenuUI"]
+pause_mode = 2
+light_mask = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-color = Color( 0.403922, 0.403922, 0.403922, 0.498039 )
+color = Color( 0, 0, 0, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuUI/BlackFade"]
+pause_mode = 2
+playback_speed = 0.3
+anims/fade_to_black = SubResource( 11 )
+
+[node name="GameLostText" type="MarginContainer" parent="MenuUI"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -140.0
+margin_top = -57.5
+margin_right = 560.0
+margin_bottom = 116.5
+rect_min_size = Vector2( 700, 0 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="YouDied" type="Label" parent="MenuUI/GameLostText"]
+pause_mode = 2
+light_mask = 0
+margin_right = 700.0
+margin_bottom = 174.0
+custom_colors/font_color = Color( 0.823529, 0, 0, 1 )
+custom_fonts/font = SubResource( 13 )
+text = "YOU DI...sappointed your Nan by not paying enough attention to her calls"
+autowrap = true
+percent_visible = 0.0819672
+
 [node name="SettingPanelContainer" parent="MenuUI" instance=ExtResource( 4 )]
 pause_mode = 2
+visible = false
+light_mask = 0
 
 [node name="OptionsContainer" parent="MenuUI" instance=ExtResource( 10 )]
 pause_mode = 2
+visible = false
+light_mask = 0
 
 [node name="TutorialContainer" parent="MenuUI" instance=ExtResource( 11 )]
 pause_mode = 2
 visible = false
+light_mask = 0
 
 [node name="CreditsContainer" parent="MenuUI" instance=ExtResource( 12 )]
 pause_mode = 2
+visible = false
+light_mask = 0
+mouse_filter = 2
 
 [node name="RestartContainer" type="MarginContainer" parent="MenuUI"]
 pause_mode = 2
-margin_right = 40.0
-margin_bottom = 40.0
+visible = false
+light_mask = 0
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -80.0
+margin_right = 213.0
+theme = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Restart" parent="MenuUI/RestartContainer" instance=ExtResource( 29 )]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 203.0
+margin_bottom = 70.0
+
 [node name="SettingsButtonContainer" type="MarginContainer" parent="MenuUI"]
 pause_mode = 2
+light_mask = 0
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -74.0
@@ -96,6 +268,7 @@ __meta__ = {
 }
 
 [node name="SettingsButton" type="Button" parent="MenuUI/SettingsButtonContainer"]
+light_mask = 0
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 64.0
@@ -105,13 +278,39 @@ icon = ExtResource( 14 )
 
 [node name="AlertableObjects" type="Node2D" parent="."]
 
+[node name="SwipableMouse" parent="AlertableObjects" instance=ExtResource( 18 )]
+position = Vector2( 855, 635 )
+alertable_object_properties = SubResource( 5 )
+swipable_object_properties = SubResource( 6 )
+
 [node name="SwipableCat" parent="AlertableObjects" instance=ExtResource( 8 )]
 position = Vector2( 230, 901 )
 alertable_object_properties = SubResource( 1 )
-base_sprite = NodePath("BaseSprite")
-resolve_sound = NodePath("ResolveSound")
-alert_sound = NodePath("AlertSound")
 swipable_object_properties = SubResource( 2 )
+
+[node name="ClickableKeyboard" parent="AlertableObjects" instance=ExtResource( 16 )]
+position = Vector2( 640, 629 )
+alertable_object_properties = SubResource( 3 )
+clickable_object_properties = SubResource( 4 )
+
+[node name="ClickableLightSwitch" parent="AlertableObjects" instance=ExtResource( 23 )]
+position = Vector2( 1412, 476 )
+alertable_object_properties = SubResource( 7 )
+clickable_object_properties = SubResource( 8 )
+
+[node name="ClickablePortait" parent="AlertableObjects" instance=ExtResource( 26 )]
+position = Vector2( 454, 202 )
+alertable_object_properties = SubResource( 9 )
+clickable_object_properties = SubResource( 10 )
+rotation_anim = "anticlockwise"
+sprite_texture = ExtResource( 27 )
+
+[node name="ClickablePortait2" parent="AlertableObjects" instance=ExtResource( 26 )]
+position = Vector2( 1274, 208 )
+alertable_object_properties = SubResource( 14 )
+clickable_object_properties = SubResource( 15 )
+rotation_anim = "clockwise"
+sprite_texture = ExtResource( 28 )
 
 [node name="SubGame" type="Node2D" parent="."]
 
@@ -124,13 +323,33 @@ limit_smoothed = true
 [node name="GameUi" type="CanvasLayer" parent="."]
 
 [node name="Meters" parent="GameUi" instance=ExtResource( 6 )]
+light_mask = 0
 anchor_top = 0.0
 anchor_bottom = 0.0
 margin_top = 0.0
 margin_bottom = 70.0
 
 [node name="Dialogue" parent="GameUi" instance=ExtResource( 5 )]
-margin_left = -525.0
-margin_bottom = -13.0
+visible = false
+light_mask = 0
+
+[node name="Screens" type="Node2D" parent="."]
+
+[node name="NFTScreen" parent="Screens" instance=ExtResource( 20 )]
+light_mask = 2
+position = Vector2( 899, 468 )
+script = ExtResource( 17 )
+
+[node name="GameScreen" parent="Screens" instance=ExtResource( 19 )]
+light_mask = 2
+position = Vector2( 649, 477 )
+
+[node name="Shadow" type="Light2D" parent="Screens"]
+position = Vector2( -1156, -1003 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 21 )
+offset = Vector2( 820, 540 )
+mode = 1
+script = ExtResource( 22 )
 
 [connection signal="pressed" from="MenuUI/SettingsButtonContainer/SettingsButton" to="MenuUI" method="_on_SettingsButton_pressed"]

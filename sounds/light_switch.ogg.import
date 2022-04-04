@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/light_switch.ogg-982a9123c6f8c6af54304d8ecfce1147.oggstr"
+
+[deps]
+
+source_file="res://sounds/light_switch.ogg"
+dest_files=[ "res://.import/light_switch.ogg-982a9123c6f8c6af54304d8ecfce1147.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

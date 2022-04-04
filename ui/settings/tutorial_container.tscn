@@ -4,11 +4,20 @@
 [ext_resource path="res://ui/hints/hint_swipe.tscn" type="PackedScene" id=2]
 [ext_resource path="res://theme/fonts/tutorial_font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://ui/meters/meters.tscn" type="PackedScene" id=4]
-[ext_resource path="res://ui/hints/hint_drag.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/hints/hint_click.tscn" type="PackedScene" id=6]
-[ext_resource path="res://ui/hints/hint_deliver.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/settings/tutorial_container.gd" type="Script" id=8]
 [ext_resource path="res://ui/settings/settings_icon_close.png" type="Texture" id=9]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://theme/fonts/dogicapixel.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 18
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_top = 6
+extra_spacing_bottom = 6
+font_data = SubResource( 1 )
 
 [node name="TutorialContainer" type="MarginContainer"]
 anchor_left = 0.5
@@ -16,9 +25,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -500.0
-margin_top = -320.5
+margin_top = -320.0
 margin_right = 500.0
-margin_bottom = 320.5
+margin_bottom = 321.0
 rect_min_size = Vector2( 1000, 0 )
 theme = ExtResource( 1 )
 script = ExtResource( 8 )
@@ -28,21 +37,24 @@ __meta__ = {
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 margin_left = 10.0
-margin_top = 10.0
+margin_top = 82.0
 margin_right = 990.0
-margin_bottom = 631.0
+margin_bottom = 559.0
+size_flags_horizontal = 5
+size_flags_vertical = 4
 
 [node name="TutorialContainer" type="MarginContainer" parent="PanelContainer"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 972.0
-margin_bottom = 613.0
+margin_bottom = 469.0
 
 [node name="TutorialContents" type="VBoxContainer" parent="PanelContainer/TutorialContainer"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 954.0
-margin_bottom = 595.0
+margin_bottom = 451.0
+size_flags_vertical = 5
 
 [node name="IntroContainer" type="HBoxContainer" parent="PanelContainer/TutorialContainer/TutorialContents"]
 margin_right = 944.0
@@ -53,7 +65,7 @@ margin_right = 886.0
 margin_bottom = 84.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0.690196, 0.690196, 0.690196, 1 )
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "The goal of Elder Rang is to ignore your Nan's innane conversation and focus on the cool stuff you have going on, like petting your cat and playing the latest video game."
 align = 1
 autowrap = true
@@ -148,123 +160,61 @@ margin_bottom = 310.0
 text = "HINT MARKERS"
 align = 1
 
-[node name="Hints" type="VBoxContainer" parent="PanelContainer/TutorialContainer/TutorialContents"]
+[node name="HintRow1" type="HBoxContainer" parent="PanelContainer/TutorialContainer/TutorialContents"]
 margin_top = 314.0
 margin_right = 944.0
-margin_bottom = 571.0
-size_flags_horizontal = 3
+margin_bottom = 427.0
 
-[node name="HintRow1" type="HBoxContainer" parent="PanelContainer/TutorialContainer/TutorialContents/Hints"]
-margin_right = 944.0
-margin_bottom = 132.0
-
-[node name="SwipeHint" type="HBoxContainer" parent="PanelContainer/TutorialContainer/TutorialContents/Hints/HintRow1"]
+[node name="SwipeHint" type="HBoxContainer" parent="PanelContainer/TutorialContainer/TutorialContents/HintRow1"]
 margin_right = 466.0
-margin_bottom = 132.0
+margin_bottom = 113.0
 size_flags_horizontal = 3
 
-[node name="HintSwipe" parent="PanelContainer/TutorialContainer/TutorialContents/Hints/HintRow1/SwipeHint" instance=ExtResource( 2 )]
+[node name="HintSwipe" parent="PanelContainer/TutorialContainer/TutorialContents/HintRow1/SwipeHint" instance=ExtResource( 2 )]
 margin_right = 132.0
-margin_bottom = 132.0
+margin_bottom = 113.0
 
-[node name="SwipeLabel" type="Label" parent="PanelContainer/TutorialContainer/TutorialContents/Hints/HintRow1/SwipeHint"]
+[node name="SwipeLabel" type="Label" parent="PanelContainer/TutorialContainer/TutorialContents/HintRow1/SwipeHint"]
 margin_left = 136.0
-margin_top = 24.0
+margin_top = 14.0
 margin_right = 466.0
-margin_bottom = 108.0
+margin_bottom = 98.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 3 )
 text = "Click and drag back and forth. Fill up the bar to resolve them!"
 autowrap = true
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/TutorialContainer/TutorialContents/Hints/HintRow1"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/TutorialContainer/TutorialContents/HintRow1"]
 margin_left = 470.0
 margin_right = 474.0
-margin_bottom = 132.0
+margin_bottom = 113.0
 size_flags_vertical = 3
 
-[node name="DragHint" type="HBoxContainer" parent="PanelContainer/TutorialContainer/TutorialContents/Hints/HintRow1"]
-margin_left = 478.0
-margin_right = 944.0
-margin_bottom = 132.0
-size_flags_horizontal = 3
-
-[node name="SwipeLabel" type="Label" parent="PanelContainer/TutorialContainer/TutorialContents/Hints/HintRow1/DragHint"]
-margin_top = 38.0
-margin_right = 350.0
-margin_bottom = 93.0
-size_flags_horizontal = 3
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 3 )
-text = "Click and drag these up to resolve them."
-align = 2
-autowrap = true
-
-[node name="HintDrag" parent="PanelContainer/TutorialContainer/TutorialContents/Hints/HintRow1/DragHint" instance=ExtResource( 5 )]
-margin_left = 354.0
-margin_right = 466.0
-margin_bottom = 132.0
-
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/TutorialContainer/TutorialContents/Hints"]
-margin_top = 136.0
-margin_right = 944.0
-margin_bottom = 140.0
-
-[node name="HintRow2" type="HBoxContainer" parent="PanelContainer/TutorialContainer/TutorialContents/Hints"]
-margin_top = 144.0
-margin_right = 944.0
-margin_bottom = 257.0
-
-[node name="ClickHint2" type="HBoxContainer" parent="PanelContainer/TutorialContainer/TutorialContents/Hints/HintRow2"]
-margin_right = 466.0
-margin_bottom = 113.0
-size_flags_horizontal = 3
-
-[node name="HintDeliver" parent="PanelContainer/TutorialContainer/TutorialContents/Hints/HintRow2/ClickHint2" instance=ExtResource( 7 )]
-margin_right = 140.0
-margin_bottom = 113.0
-
-[node name="SwipeLabel" type="Label" parent="PanelContainer/TutorialContainer/TutorialContents/Hints/HintRow2/ClickHint2"]
-margin_left = 144.0
-margin_right = 466.0
-margin_bottom = 113.0
-size_flags_horizontal = 3
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 3 )
-text = "Some things need other things delivered to them. Find said thing and drag it over!"
-autowrap = true
-
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/TutorialContainer/TutorialContents/Hints/HintRow2"]
-margin_left = 470.0
-margin_right = 474.0
-margin_bottom = 113.0
-
-[node name="ClickHint" type="HBoxContainer" parent="PanelContainer/TutorialContainer/TutorialContents/Hints/HintRow2"]
+[node name="ClickHint" type="HBoxContainer" parent="PanelContainer/TutorialContainer/TutorialContents/HintRow1"]
 margin_left = 478.0
 margin_right = 944.0
 margin_bottom = 113.0
 size_flags_horizontal = 3
 
-[node name="SwipeLabel" type="Label" parent="PanelContainer/TutorialContainer/TutorialContents/Hints/HintRow2/ClickHint"]
-margin_top = 29.0
+[node name="SwipeLabel" type="Label" parent="PanelContainer/TutorialContainer/TutorialContents/HintRow1/ClickHint"]
 margin_right = 350.0
-margin_bottom = 84.0
+margin_bottom = 113.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 3 )
-text = "Just simply click on these to resolve them!"
+text = "Just simply click on these to resolve them. Some items need multiple clicks!"
 autowrap = true
 
-[node name="HintClick" parent="PanelContainer/TutorialContainer/TutorialContents/Hints/HintRow2/ClickHint" instance=ExtResource( 6 )]
+[node name="HintClick" parent="PanelContainer/TutorialContainer/TutorialContents/HintRow1/ClickHint" instance=ExtResource( 6 )]
 margin_left = 354.0
 margin_right = 466.0
 margin_bottom = 113.0
 
 [node name="Separator3" type="HSeparator" parent="PanelContainer/TutorialContainer/TutorialContents"]
-margin_top = 575.0
+margin_top = 431.0
 margin_right = 944.0
-margin_bottom = 585.0
+margin_bottom = 441.0
 rect_min_size = Vector2( 0, 10 )
 
 [connection signal="pressed" from="PanelContainer/TutorialContainer/TutorialContents/IntroContainer/CloseButton" to="." method="_on_CloseButton_pressed"]

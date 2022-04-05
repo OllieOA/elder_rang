@@ -1,0 +1,23 @@
+- [x] Portraits do not spin properly
+- [x] Suspicion doesn't penalise hard enough for non-response
+- [x] Stress reward may be too generous
+- [x] Activities don't sleep for long enough
+- [x] Phone does not show up in menu on restart (if game finished)
+- [x] "You just don't get service like you used to" mislabelled HAPPY
+- [x] Sound sliders don't match mute, and start at minimum not maximum
+- [x] Picture frame hints are too far
+- [x] Picture frame collision areas are too small
+- [x] Meters are too small
+- [x] Restart button (in options menu) doesn't work (needs to unpause game itself)
+- [x] Dialogue continues under gameover
+
+
+- Portraits still don't tilt right, but you are at least moving them the right way,
+- Fixed portrait click and hint range,
+- Stopped dialogue on gameover,
+- Fixed game balance with harsher penalties for not selecting a response,
+- Fixed activities not sleeping for 1 turn,
+- Fixed mislabelled dialogue,
+- Fixed phone not showing up on game restart,
+- Fixed restart button,
+- Fixed Meters being too small,

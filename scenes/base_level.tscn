@@ -139,6 +139,8 @@ black_fade = NodePath("MenuUI/BlackFade")
 black_fade_animator = NodePath("MenuUI/BlackFade/AnimationPlayer")
 you_died_label = NodePath("MenuUI/GameLostText/YouDied")
 end_game_restart = NodePath("MenuUI/RestartContainer")
+settings_button_container = NodePath("MenuUI/SettingsButtonContainer")
+settings_panel_container = NodePath("MenuUI/SettingPanelContainer")
 
 [node name="Background" type="Node2D" parent="."]
 

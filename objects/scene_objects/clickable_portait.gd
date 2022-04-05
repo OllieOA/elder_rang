@@ -15,4 +15,4 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	rotator.seek(1 - click_progress.value, true)
+	rotator.seek(click_progress.value, true)

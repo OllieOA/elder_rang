@@ -1,10 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://objects/base_objects/clickable_object.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/scene_objects/clickable_portait.gd" type="Script" id=2]
 [ext_resource path="res://objects/base_objects/alertable_object_properties.tres" type="Resource" id=3]
 [ext_resource path="res://objects/base_objects/clickable_object_properties.tres" type="Resource" id=4]
 [ext_resource path="res://objects/scene_objects/portait_combine.png" type="Texture" id=5]
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 94.0
+height = 16.0
 
 [sub_resource type="Shader" id=4]
 code = "shader_type canvas_item;
@@ -111,10 +115,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ -30.0, 0.0 ]
+"values": [ 0.0, -30.0, 0.0 ]
 }
 
 [sub_resource type="Animation" id=1]
@@ -126,10 +130,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 35.0, 0.0 ]
+"values": [ 0.0, 35.0, 0.0 ]
 }
 
 [node name="ClickablePortait" instance=ExtResource( 1 )]
@@ -137,6 +141,10 @@ script = ExtResource( 2 )
 alertable_object_properties = ExtResource( 3 )
 clickable_object_properties = ExtResource( 4 )
 rotator = NodePath("BaseSprite/AnimationPlayer")
+
+[node name="CollisionShape2D" parent="ClickArea" index="0"]
+rotation = 1.5708
+shape = SubResource( 6 )
 
 [node name="BaseSprite" parent="." index="1"]
 material = SubResource( 5 )
@@ -154,4 +162,4 @@ margin_right = 260.0
 margin_bottom = 111.0
 
 [node name="HintPosition" parent="." index="6"]
-position = Vector2( -56, 61 )
+position = Vector2( -56, 30 )

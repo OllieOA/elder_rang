@@ -91,7 +91,7 @@ var expected_response: int
 var response_correct: bool
 var prompt_timeout: float
 var remaing_prompt_time: float
-const suspicion_rate = 0.005
+const suspicion_rate = 0.008
 # warnings-disable - 2022-04-04 - velopman
 
 
@@ -108,16 +108,21 @@ func _ready():
 	SignalBus.connect("nan_name_updated", self, "_handle_nan_name_updated")
 	SignalBus.connect("question_asked", self, "_handle_question_asked")
 	SignalBus.connect("game_lost", self, "_handle_game_lost")
+	SignalBus.connect("title_screen_loaded", self, "_initialize_autoload")
 
 
 func _initialize_autoload():
+	state = State.MISSED
+	_show_state()
 	master_contents.show()
 	missed_calls = 2
-	master_contents.modulate = Color("ffffffff")
+	master_contents.modulate.a = 1
 	missed_call_timer.start()
+	_update_missed_calls()
 	master_contents.show()
 	master_contents.rect_rotation = 0
 	master_contents.rect_position = Vector2(900, 250)
+	master_contents.rect_scale = Vector2(1, 1)
 	call_back.disabled = false
 	conversation_length.percent_visible = 1
 
@@ -145,6 +150,7 @@ func _process(delta: float) -> void:
 			conversation_length.set_text(GameProgress.conversation_length_string)
 			_prompt_countdown(delta)
 			if prompt_timeout <= 0.0:
+				GameProgress.add_suspicion(0.04)  # Flat penalty for not responding
 				SignalBus.emit_signal("response_provided", false)
 				_disable_prompt()
 				state = State.INGAME

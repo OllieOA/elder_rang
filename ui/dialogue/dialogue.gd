@@ -37,6 +37,8 @@ var next_phrase := ""
 var next_phrase_type : int
 var next_phrase_expected_response : int
 
+var stop_dialogue := false
+
 
 func _ready() -> void:
 	hide()
@@ -45,6 +47,7 @@ func _ready() -> void:
 	SignalBus.connect("nan_answered_phone", self, "_handle_nan_answered_phone")
 	SignalBus.connect("single_dialogue_finished", self, "_handle_single_dialogue_finished")
 	SignalBus.connect("response_provided", self, "_handle_response_provided")
+	SignalBus.connect("game_lost", self, "_handle_game_lost")
 
 
 func _init_dialogue():
@@ -104,7 +107,9 @@ func _start_dialogue_scroll(type: int, expected_response: int):
 	text_timer.start()
 	yield(text_timer, "timeout")
 
-	SignalBus.emit_signal("single_dialogue_finished", type, expected_response)
+	if not stop_dialogue:
+
+		SignalBus.emit_signal("single_dialogue_finished", type, expected_response)
 
 
 func _select_phrase_from(phrase_array) -> String:
@@ -175,3 +180,8 @@ func _handle_response_provided(response_correct: bool):
 		_write_dialogue(next_phrase, dia_db.Type.INCORRECT, -1)
 		SignalBus.emit_signal("response_incorrect")
 		
+		
+func _handle_game_lost() -> void:
+	hide()
+	stop_dialogue = true
+

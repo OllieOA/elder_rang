@@ -65,6 +65,7 @@ func _attempt_alert() -> void:
 		
 		if curr_obj.object_in_cooldown:
 			curr_obj.object_in_cooldown = false
+			continue
 			
 		curr_obj.current_random_chance += 1
 		if curr_obj.current_random_chance >= curr_roll:

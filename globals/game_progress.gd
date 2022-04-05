@@ -70,4 +70,4 @@ func _handle_nan_answered_phone() -> void:
 
 
 func _handle_alert_resolved(object) -> void:
-	add_stress(-3)
+	add_stress(-0.02)

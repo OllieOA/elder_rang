@@ -7,6 +7,8 @@ export (NodePath) onready var black_fade = get_node(black_fade) as ColorRect
 export (NodePath) onready var black_fade_animator = get_node(black_fade_animator) as AnimationPlayer
 export (NodePath) onready var you_died_label = get_node(you_died_label) as Label
 export (NodePath) onready var end_game_restart = get_node(end_game_restart) as MarginContainer
+export (NodePath) onready var settings_button_container = get_node(settings_button_container) as MarginContainer
+export (NodePath) onready var settings_panel_container = get_node(settings_panel_container) as MarginContainer
 
 
 # Camera vars
@@ -18,6 +20,7 @@ var mouse_to_viewport_normalised := Vector2.ZERO
 
 
 func _ready() -> void:
+	settings_button_container.show()
 	you_died_label.hide()
 	black_fade.color.a = 0
 	end_game_restart.hide()
@@ -61,9 +64,10 @@ func _handle_game_lost():
 	add_child(t_fade)
 	add_child(t_write)
 	
+	settings_button_container.hide()
 	you_died_label.modulate.a = 0
 	you_died_label.show()
-	t_fade.interpolate_property(you_died_label, "modulate.a", 0, 255, 2.0)
+	t_fade.interpolate_property(you_died_label, "modulate", Color("ffffff00"), Color("ffffffff"), 2.0)
 	t_fade.start()
 	yield(t_fade, "tween_completed")
 	
@@ -76,5 +80,6 @@ func _handle_game_lost():
 	end_game_restart.show()
 
 func _handle_restart_button_pressed():
+	settings_panel_container.hide()
 	GameControl.goto_scene("res://scenes/title_screen.tscn")
 	

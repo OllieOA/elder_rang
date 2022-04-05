@@ -9,6 +9,7 @@ signal swipe_complete(object)
 
 signal titlescreen_game_started
 signal title_fade_complete
+signal title_screen_loaded
 
 # Nan signals
 signal nan_index_update(value)

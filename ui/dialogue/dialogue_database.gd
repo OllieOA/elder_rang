@@ -41,7 +41,7 @@ const canned_replies = {
 const dialogue_database = [
 	{
 		"correct_response": Response.HAPPY,
-		"content": "Hi, grandchild, how are you today? There's so much I've been planning to discuss with you, like you know what happened at the pond today. I was feeding the birds and an old woman walked by. She had such a kind face, a nice smile and such pretty blond hair. You know me and old ladies. I do try to be nice to everyone I meet.",
+		"content": "So, how are you today? There's so much I've been planning to discuss with you, like you know what happened at the pond today. I was feeding the birds and an old woman walked by. She had such a kind face, a nice smile and such pretty blond hair. You know me and old ladies. I do try to be nice to everyone I meet.",
 		"used": false
 	},
 	{
@@ -65,7 +65,7 @@ const dialogue_database = [
 		"used": false
 	},
 	{
-		"correct_response": Response.HAPPY,
+		"correct_response": Response.SAD,
 		"content": " I remember when you used to go to the store with two shillings and a sixpence and you'd come back with groceries for the week! And the service was friendly, smiles everywhere, and they always had time for a chat. But you don't get service like that these days, do you?",
 		"used": false
 	},

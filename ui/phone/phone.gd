@@ -91,7 +91,7 @@ var expected_response: int
 var response_correct: bool
 var prompt_timeout: float
 var remaing_prompt_time: float
-const suspicion_rate = 0.008
+const suspicion_rate = 0.016
 # warnings-disable - 2022-04-04 - velopman
 
 

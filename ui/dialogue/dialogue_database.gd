@@ -17,13 +17,18 @@ const canned_replies = {
 	Type.CORRECT: [
 		"I knew you'd understand!",
 		"Sometimes you're the only one who gets me.",
-		"You're definitely your father's child!"
+		"You're definitely your father's child!",
+		"Thank you being there for me. Nobody does anymore.",
+		"Listening is a virtue that I never expected from you!",
+		"Ever since you were a child, I've been waiting for you to say something like that!"
 	],
 	Type.INCORRECT: [
 		"Your generation never listens to us!",
-		"Did you even listen?",
+		"Did you even listen? Do you ever listen?",
 		"Are you stupid? Do you understand me?",
-		"I'm not mad, I'm just disappointed..."
+		"I'm not mad, I'm just disappointed...",
+		"You better not be making those magic fake ape coins or whatever!",
+		"I may as well be dead to you! You're not getting anything in the will"
 	],
 	Type.GREETING: [
 		"Hello grandchild, lovely for you to finally want to talk to me! I am well, not that you asked...",
@@ -34,6 +39,10 @@ const canned_replies = {
 		"Do you know what I mean?",
 		"What do you think about that?",
 		"How does it make you feel?",
+		"How would you react?",
+		"Do you a agree?",
+		"Right? Right?",
+		"Susie thinks so, you know Susie? What do you think?"
 	]
 }
 
@@ -73,5 +82,41 @@ const dialogue_database = [
 		"correct_response": Response.SAD,
 		"content": "Oh, you did what? What a bad accident! You know, back in the day, accidents had real consequences. My husband and I, well, we had an accident, and if it wasn't for that, you wouldn't even be here! Consequences, they don't necessarily need to be bad, but I think in this case we could certainly agree that they were.",
 		"used": false
-	}
+	},
+	{
+		"correct_response": Response.HAPPY,
+		"content": "You know how it is these days... back in my day things were a lot better. We didn't have these fangled machines that did everything for us. I miss the days, but I am glad to have lived them.",
+		"used": false
+	},
+	{
+		"correct_response": Response.SAD,
+		"content": "A month ago, I saw your cousin Lynda, you know how Lynda is she never stops talking. Once you get her going, she won’t stop. I was out for a walk at the time because I decided to go try out that newfangled bird park. Do you know how much money they spent on that park?",
+		"used": false
+	},
+	{
+		"correct_response": Response.HAPPY,
+		"content": "I got a letter today. Does anyone even send letters anymore? The smell of the pen, and the feel of the paper, it's always so good. It's sad that people don't send more letter, though getting one definitely made me feel good. There was nothing important in the letter, mind you. Something about having an onion on one's belt...",
+		"used": false
+	},
+	{
+		"correct_response": Response.HAPPY,
+		"content": "Did I tell you what happened last time I went to the newsagents? I decided that luck was on my side that day, so I decided to buy a scratch ticket. I never felt my heart race as fast as it did when I scratched off those three bananas.",
+		"used": false
+	},
+	{
+		"correct_response": Response.HAPPY,
+		"content": "A new family moved in next door; they have a very large dog. All it does is bark and bark and bark. I went out in my backyard yesterday and threw some of my super special meatloaf over the back fence. I haven’t heard a peep out of it since.",
+		"used": false
+	},
+	{
+		"correct_response": Response.SAD,
+		"content": "Back in my day you could smoke on a plane, and no one would care. I went for a trip down to Florida last month and now they want me to wear a mask?",
+		"used": false
+	},
+	{
+		"correct_response": Response.HAPPY,
+		"content": "Barbara and I played Bridge today. She is awful at bridge. I truly despise Barbara and everything she stands for. She is a complete waste of my time. The look on her face filled me with such joy when I put down the final card. I'll never forget it.",
+		"used": false
+	},
+	
 ]
